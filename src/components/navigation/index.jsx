@@ -26,6 +26,11 @@ const NavBar = () => (
               Add user
             </Link>
           </Button>
+          <Button color="inherit">
+            <Link to='/add-new-category'>
+              Add category
+            </Link>
+          </Button>
         </Toolbar>
       </AppBar>
     </Box>

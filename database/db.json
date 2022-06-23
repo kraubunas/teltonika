@@ -1,42 +1,16 @@
 {
-    "programmers-category": [
+    "employees": [
         {
-            "programmers-sub-category-front-end": [
+            "programmers": [
                 {
-                    "id": "front-end",
-                    "front-end-categories": [
+                    "front-end": [
                         {
-                            "sub-sub-id": "sub-sub-1",
-                            "sub-sub-name": "Framework"
+                            "frameworks": ["React", "Vue.js"]
                         }
-                    ]
-                },
-                {
-                    "sub-name": "Back-end",
-                    "sub-sub-categories": [
+                    ],
+                    "back-end": [
                         {
-                            "sub-sub-id": "sub-sub-1",
-                            "sub-sub-name": "Framework"
-                        }
-                    ]
-                }
-            ],
-            "programmers-sub-category-back-end": [
-                {
-                    "id": "back-end",
-                    "sub-sub-categories": [
-                        {
-                            "sub-sub-id": "sub-sub-1",
-                            "sub-sub-name": "Framework"
-                        }
-                    ]
-                },
-                {
-                    "sub-name": "Back-end",
-                    "sub-sub-categories": [
-                        {
-                            "sub-sub-id": "sub-sub-1",
-                            "sub-sub-name": "Framework"
+                            "frameworks": ["Express.js", "Ruby on rails"]
                         }
                     ]
                 }
