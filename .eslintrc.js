@@ -2,14 +2,22 @@ module.exports = {
   env: {
     browser: true,
     es2021: true,
+    node: true
   },
   extends: [
+    'eslint:recommended',
+    'plugin:react/recommended',
     'airbnb-base',
   ],
   parserOptions: {
+    ecmaFeatures: {
+      jsx: true
+    },
     ecmaVersion: 'latest',
-    sourceType: 'module',
   },
+  plugins: [
+    'react',
+  ],
   rules: {
     quotes: [2, 'single'],
     'quote-props': [2, 'as-needed'],
@@ -17,11 +25,11 @@ module.exports = {
     'react/prop-types': [0],
     'max-len': [0],
     'jsx-a11y/label-has-associated-control': [0],
-    'react/jsx-no-duplicate-props': [2, { ignoreCase: false }],
+    "react/jsx-no-duplicate-props": [2, { "ignoreCase": false }],
     'react/jsx-props-no-spreading': [0],
     'react/function-component-definition': [2, {
-      namedComponents: 'arrow-function',
-      unnamedComponents: 'arrow-function',
+      'namedComponents': 'arrow-function',
+      'unnamedComponents': 'arrow-function',
     }],
     'no-restricted-exports': [0],
     'react/require-default-props': [0],

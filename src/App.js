@@ -1,9 +1,10 @@
+import React from 'react';
+import LandingPage from './components/landing-page.jsx';
 
-function App() {
-  return (
-    <div className="App">
-    </div>
-  );
-}
+const App = () => (
+  <div className="App">
+    <LandingPage />
+  </div>
+);
 
 export default App;
