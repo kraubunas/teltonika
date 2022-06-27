@@ -51,12 +51,8 @@ const CreateUser = () => {
         },
       },
     )
-      .then((response) => {
-        console.log(response);
-        return response.json();
-      })
+      .then((response) => response.json())
       .then((myJson) => {
-        console.log(myJson);
         setCategories(myJson);
       });
   };
@@ -85,7 +81,6 @@ const CreateUser = () => {
       }).then(() => {
         console.log('new user added');
       });
-      console.log(values);
     },
   });
 

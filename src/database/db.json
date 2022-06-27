@@ -3,11 +3,11 @@
     {
       "id": 1,
       "title": "employees",
-      "sub-category": [
+      "subCategory": [
         {
           "id": 1,
           "title": "programmers",
-          "sub-sub-category": [
+          "subSubCategory": [
             {
               "id": 1,
               "layer": "Front-end"
@@ -21,7 +21,7 @@
         {
           "id": 2,
           "title": "sales",
-          "sub-sub-category": [
+          "subSubCategory": [
             {}
           ]
         }
@@ -30,9 +30,24 @@
     {
       "id": 2,
       "title": "investors",
-      "sub-category": []
+      "subCategory": []
+    },
+    {
+      "id": 3,
+      "title": "valdzia",
+      "subCategory": []
     }
   ],
   "users": [
+    {
+      "firstName": "Karolis",
+      "lastName": "Raubūnas",
+      "password": "123456Kar!",
+      "email": "kraubun@gmail.com",
+      "age": 26,
+      "gender": "male",
+      "category": "Valdzia",
+      "id": 1
+    }
   ]
 }
