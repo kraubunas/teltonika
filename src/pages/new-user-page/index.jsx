@@ -1,7 +1,7 @@
 // @ts-nocheck
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
-  Typography, Container, Paper, TextField, Button, FormControl, FormControlLabel, FormLabel, Radio, RadioGroup,
+  Typography, Container, Paper, TextField, Button, FormControl, FormControlLabel, FormLabel, Radio, RadioGroup, MenuItem,
 } from '@mui/material';
 import { useFormik, Formik, Form } from 'formik';
 import * as Yup from 'yup';
@@ -39,6 +39,31 @@ const validationSchema = Yup.object({
 });
 
 const CreateUser = () => {
+  const [categories, setCategories] = useState([]);
+
+  const data = () => {
+    fetch(
+      'http://localhost:8000/categories',
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+      },
+    )
+      .then((response) => {
+        console.log(response);
+        return response.json();
+      })
+      .then((myJson) => {
+        console.log(myJson);
+        setCategories(myJson);
+      });
+  };
+  useEffect(() => {
+    data();
+  }, []);
+
   const initialValues = {
     firstName: '',
     lastName: '',
@@ -46,7 +71,7 @@ const CreateUser = () => {
     email: '',
     age: 0,
     gender: '',
-    // category: '',
+    category: '',
   };
 
   const formik = useFormik({
@@ -154,14 +179,19 @@ const CreateUser = () => {
                 <FormControlLabel type='radio' name='gender' value='female' control={<Radio />} label="Female" checked={formik.values.gender === 'female'} onChange={() => formik.setFieldValue('gender', 'female')} />
               </RadioGroup>
             </FormControl>
-            {/* <TextField
-            id="standard-select-currency"
+            <TextField
             select
-            label="Select"
-            helperText="Please select your currency"
+            name='category'
+            label="Select category"
+            onBlur={formik.handleBlur}
+            onChange={formik.handleChange}
+            helperText="Please select your category"
             variant="standard"
             >
-            </TextField> */}
+              {
+                categories.map((category) => <MenuItem key={category.id} value={category.title}>{category.title}</MenuItem>)
+              }
+            </TextField>
             <Button type="submit" variant="contained">Create User</Button>
           </Form>
           </Formik>
