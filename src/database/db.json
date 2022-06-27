@@ -7,23 +7,21 @@
         {
           "id": 1,
           "title": "programmers",
-          "subSubCategory": [
+          "subCategory": [
             {
               "id": 1,
-              "layer": "Front-end"
+              "title": "Front-end"
             },
             {
               "id": 2,
-              "layer": "Back-end"
+              "title": "Back-end"
             }
           ]
         },
         {
           "id": 2,
           "title": "sales",
-          "subSubCategory": [
-            {}
-          ]
+          "subCategory": []
         }
       ]
     },
@@ -34,7 +32,7 @@
     },
     {
       "id": 3,
-      "title": "valdzia",
+      "title": "heads",
       "subCategory": []
     }
   ],
@@ -46,8 +44,28 @@
       "email": "kraubun@gmail.com",
       "age": 26,
       "gender": "male",
-      "category": "Valdzia",
+      "category": "employees",
       "id": 1
+    },
+    {
+      "firstName": "Petras",
+      "lastName": "Petraitis",
+      "password": "123456Kar!",
+      "email": "petras@petraitis.com",
+      "age": 27,
+      "gender": "male",
+      "category": "investors",
+      "id": 2
+    },
+    {
+      "firstName": "Jonas",
+      "lastName": "Jonaitis",
+      "password": "123456Kar!",
+      "email": "jonas@jonaitis.lt",
+      "age": 45,
+      "gender": "male",
+      "category": "heads",
+      "id": 3
     }
   ]
 }

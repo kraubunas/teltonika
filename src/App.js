@@ -1,8 +1,5 @@
-// @ts-ignore
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
-// @ts-ignore
-// import TablePage from './pages/table-page/index.jsx';
 import TablePage from './pages/table-page/index.jsx';
 import CreateNewCategory from './pages/new-category-page/index.jsx';
 import LandingPage from './components/landing-page.jsx';
@@ -51,12 +48,13 @@ const App = () => {
             key={category.id}
             // @ts-ignore
             path={category.title}
-            element={(<TablePage />)}
+            element={(
+              <TablePage />
+            )}
           />)
         }
       </Route>
     </Routes>
   );
 };
-
 export default App;

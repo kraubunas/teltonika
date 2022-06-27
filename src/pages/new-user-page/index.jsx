@@ -30,7 +30,7 @@ const validationSchema = Yup.object({
     .max(32, 'Need 32 symbols or less'),
 
   age: Yup.number()
-    .min(0)
+    .min(18)
     .max(99)
     .required('Required'),
 
