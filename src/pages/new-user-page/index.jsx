@@ -1,12 +1,13 @@
+// @ts-nocheck
 import React from 'react';
 import {
   Typography, Container, Paper, TextField, Button, FormControl, FormControlLabel, FormLabel, Radio, RadioGroup,
 } from '@mui/material';
-import { useFormik } from 'formik';
+import { useFormik, Formik, Form } from 'formik';
 import * as Yup from 'yup';
 
 const validationSchema = Yup.object({
-  name: Yup.string()
+  firstName: Yup.string()
     .required('Required')
     .max(32, 'Need 32 symbols or less'),
 
@@ -34,23 +35,33 @@ const validationSchema = Yup.object({
     .required('Required'),
 
   gender: Yup.string()
-    .required('Required'),
+    .required('Gender is required'),
 });
 
 const CreateUser = () => {
   const initialValues = {
-    name: '',
+    firstName: '',
     lastName: '',
     password: '',
     email: '',
     age: 0,
     gender: '',
+    // category: '',
   };
 
   const formik = useFormik({
     initialValues,
-    onSubmit: (values) => console.log(JSON.stringify(values, null, 2)),
     validationSchema,
+    onSubmit: (values) => {
+      fetch('http://localhost:8000/users', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(values),
+      }).then(() => {
+        console.log('new user added');
+      });
+      console.log(values);
+    },
   });
 
   return (
@@ -69,20 +80,23 @@ const CreateUser = () => {
           mt: 1,
         }}
         >
-          <form
+      <Formik >
+          <Form
             style={{
               display: 'flex', flexDirection: 'column', gap: 15,
             }}
+            onSubmit={formik.handleSubmit}
           >
             <TextField
-            name='name'
+            name='firstName'
             type="text"
-            label="Name"
-            value={formik.values.name}
+            label="Last name"
+            value={formik.values.firstName}
             fullWidth
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            error={formik.touched.name && Boolean(formik.errors.name)}
+            error={formik.touched.firstName && Boolean(formik.errors.firstName)}
+            helperText={formik.touched.firstName && formik.errors.firstName ? formik.touched.firstName && formik.errors.firstName : null}
             required
             />
             <TextField
@@ -94,6 +108,7 @@ const CreateUser = () => {
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             error={formik.touched.lastName && Boolean(formik.errors.lastName)}
+            helperText={formik.touched.lastName && formik.errors.lastName ? formik.touched.lastName && formik.errors.lastName : null}
             required
             />
             <TextField
@@ -105,6 +120,7 @@ const CreateUser = () => {
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             error={formik.touched.password && Boolean(formik.errors.password)}
+            helperText={formik.touched.password && formik.errors.password ? formik.touched.password && formik.errors.password : null}
             required
             />
             <TextField
@@ -116,6 +132,7 @@ const CreateUser = () => {
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             error={formik.touched.email && Boolean(formik.errors.email)}
+            helperText={formik.touched.email && formik.errors.email ? formik.touched.email && formik.errors.email : null}
             required
             />
             <TextField
@@ -127,13 +144,14 @@ const CreateUser = () => {
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             error={formik.touched.age && Boolean(formik.errors.age)}
+            helperText={formik.touched.age && formik.errors.age ? formik.touched.age && formik.errors.age : null}
             required
             />
             <FormControl required>
               <FormLabel>Gender</FormLabel>
               <RadioGroup row >
-                <FormControlLabel name='gender' value="male" control={<Radio />} label="Male" />
-                <FormControlLabel name='gender' value="female" control={<Radio />} label="Female" />
+                <FormControlLabel type='radio' name='gender' value='male' control={<Radio />} label="Male" checked={formik.values.gender === 'male'} onChange={() => formik.setFieldValue('gender', 'male')} />
+                <FormControlLabel type='radio' name='gender' value='female' control={<Radio />} label="Female" checked={formik.values.gender === 'female'} onChange={() => formik.setFieldValue('gender', 'female')} />
               </RadioGroup>
             </FormControl>
             {/* <TextField
@@ -145,7 +163,8 @@ const CreateUser = () => {
             >
             </TextField> */}
             <Button type="submit" variant="contained">Create User</Button>
-          </form>
+          </Form>
+          </Formik>
         </Container>
       </Paper>
     </Container>

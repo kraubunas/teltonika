@@ -5,25 +5,22 @@ import LandingPage from './components/landing-page.jsx';
 import CreateUser from './pages/new-user-page/index.jsx';
 
 const App = () => (
-  <div className="App">
-    <Routes>
-      <Route path='/' element={<LandingPage />}>
-        <Route
-          path="add-new-user"
-          element={(
-            <CreateUser />
-          )}
-        />
-        <Route
-          path="add-new-category"
-          element={(
-            <CreateNewCategory />
-          )}
-        />
-
-      </Route>
-    </Routes>
-  </div>
+  <Routes>
+    <Route path='/' element={<LandingPage />}>
+      <Route
+        path="add-new-user"
+        element={(
+          <CreateUser />
+        )}
+      />
+      <Route
+        path="add-new-category"
+        element={(
+          <CreateNewCategory />
+        )}
+      />
+    </Route>
+  </Routes>
 );
 
 export default App;

@@ -1,0 +1,38 @@
+{
+  "categories": [
+    {
+      "id": 1,
+      "title": "employees",
+      "sub-category": [
+        {
+          "id": 1,
+          "title": "programmers",
+          "sub-sub-category": [
+            {
+              "id": 1,
+              "layer": "Front-end"
+            },
+            {
+              "id": 2,
+              "layer": "Back-end"
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "title": "sales",
+          "sub-sub-category": [
+            {}
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "investors",
+      "sub-category": []
+    }
+  ],
+  "users": [
+  ]
+}
