@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Outlet, Route, Routes } from 'react-router-dom';
+import HomePage from './pages/home-page/index.jsx';
 import TablePage from './pages/table-page/index.jsx';
 import CreateNewCategory from './pages/new-category-page/index.jsx';
 import LandingPage from './components/landing-page.jsx';
@@ -27,9 +28,23 @@ const App = () => {
     data();
   }, []);
 
+  // @ts-ignore
+  const Table = () => (
+    <div>
+      <TablePage />
+      <Outlet />
+    </div>
+  );
+
   return (
     <Routes>
       <Route path='/' element={<LandingPage />}>
+        <Route
+          path='/'
+          element={(
+            <HomePage />
+          )}
+        />
         <Route
           path="add-new-user"
           element={(
@@ -48,9 +63,9 @@ const App = () => {
             key={category.id}
             // @ts-ignore
             path={category.title}
-            element={(
-              <TablePage />
-            )}
+            // @ts-ignore
+            component={Table}
+            element={<TablePage />}
           />)
         }
       </Route>
