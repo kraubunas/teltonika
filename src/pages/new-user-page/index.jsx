@@ -6,7 +6,9 @@ import {
 import { useFormik, Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import createUserAction from '../../redux/create-users/action-creators/create-users-action-creators';
+import CategoryService from '../../redux/categories/service/categories-get-service';
 
 const validationSchema = Yup.object({
   firstName: Yup.string()
@@ -43,24 +45,19 @@ const validationSchema = Yup.object({
 const CreateUser = () => {
   const [categories, setCategories] = useState([]);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  const data = () => {
-    fetch(
-      'http://localhost:8000/categories',
-      {
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
-      },
-    )
-      .then((response) => response.json())
-      .then((myJson) => {
-        setCategories(myJson);
-      });
-  };
   useEffect(() => {
-    data();
+    CategoryService.getCategories().then(
+      (res) => {
+        setCategories(res.data);
+      },
+      (error) => {
+        const content = (error.res && error.res.data) || error.message || error.toString();
+
+        setCategories(content);
+      },
+    );
   }, []);
 
   const initialValues = {
@@ -80,6 +77,7 @@ const CreateUser = () => {
       firstName, lastName, password, email, age, gender, category,
     });
     dispatch(createUser);
+    navigate('/');
   };
 
   const formik = useFormik({
@@ -114,7 +112,7 @@ const CreateUser = () => {
             <TextField
             name='firstName'
             type="text"
-            label="Last name"
+            label="First name"
             value={formik.values.firstName}
             fullWidth
             onChange={formik.handleChange}

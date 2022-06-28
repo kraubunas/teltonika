@@ -34,6 +34,12 @@
       "id": 3,
       "title": "heads",
       "subCategory": []
+    },
+    {
+      "title": "darbininkai",
+      "subCategory": "saltkalviai",
+      "subSubCategory": "suvirintojai",
+      "id": 4
     }
   ],
   "users": [
@@ -48,34 +54,24 @@
       "id": 1
     },
     {
-      "firstName": "Petras",
-      "lastName": "Petraitis",
+      "firstName": "Karolis",
+      "lastName": "Raubūnas",
       "password": "123456Kar!",
-      "email": "petras@petraitis.com",
-      "age": 27,
+      "email": "kraubun@gmail.com",
+      "age": 21,
       "gender": "male",
-      "category": "investors",
+      "category": "employees",
       "id": 2
     },
     {
-      "firstName": "Jonas",
-      "lastName": "Jonaitis",
+      "firstName": "Karolis",
+      "lastName": "Raubūnas",
       "password": "123456Kar!",
-      "email": "jonas@jonaitis.lt",
-      "age": 45,
-      "gender": "male",
-      "category": "heads",
-      "id": 3
-    },
-    {
-      "firstName": "Antanas",
-      "lastName": "Antaniukas",
-      "password": "Antanas123!",
-      "email": "antanas@antaniukas.lt",
-      "age": 45,
+      "email": "kraubun@gmail.com",
+      "age": 18,
       "gender": "male",
       "category": "employees",
-      "id": 4
+      "id": 3
     }
   ]
 }

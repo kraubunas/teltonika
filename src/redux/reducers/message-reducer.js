@@ -1,4 +1,4 @@
-import { SET_MESSAGE, CLEAR_MESSAGE } from '../action-creators/create-users-action-types';
+import { SET_MESSAGE, CLEAR_MESSAGE } from '../create-users/action-creators/create-users-action-types';
 
 const initialState = {};
 // @ts-ignore

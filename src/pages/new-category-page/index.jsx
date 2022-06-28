@@ -1,3 +1,4 @@
+// @ts-ignore
 import React from 'react';
 import {
   Typography, Container, Paper, TextField, Button,
@@ -5,6 +6,8 @@ import {
 import { useFormik, Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import createCategoryAction from '../../redux/categories/action-creators/categories-action-creators';
 
 const validationSchema = Yup.object({
   title: Yup.string()
@@ -28,19 +31,19 @@ const CreateNewCategory = () => {
   };
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  // @ts-ignore
+  const handleCreateCategory = ({ title, subCategory, subSubCategory }) => {
+    const createCategory = createCategoryAction({ title, subCategory, subSubCategory });
+    // @ts-ignore
+    dispatch(createCategory);
+    navigate('/');
+  };
 
   const formik = useFormik({
     initialValues,
-    onSubmit: (values) => {
-      fetch('http://localhost:8000/categories', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(values),
-      }).then(() => {
-        console.log('new category created');
-        navigate('/');
-      });
-    },
+    onSubmit: handleCreateCategory,
     validationSchema,
   });
 
