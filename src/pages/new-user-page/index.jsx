@@ -5,6 +5,8 @@ import {
 } from '@mui/material';
 import { useFormik, Formik, Form } from 'formik';
 import * as Yup from 'yup';
+import { useDispatch } from 'react-redux';
+import createUserAction from '../../redux/create-users/action-creators/create-users-action-creators';
 
 const validationSchema = Yup.object({
   firstName: Yup.string()
@@ -40,6 +42,7 @@ const validationSchema = Yup.object({
 
 const CreateUser = () => {
   const [categories, setCategories] = useState([]);
+  const dispatch = useDispatch();
 
   const data = () => {
     fetch(
@@ -70,18 +73,19 @@ const CreateUser = () => {
     category: '',
   };
 
+  const handleCreateUser = ({
+    firstName, lastName, password, email, age, gender, category,
+  }) => {
+    const createUser = createUserAction({
+      firstName, lastName, password, email, age, gender, category,
+    });
+    dispatch(createUser);
+  };
+
   const formik = useFormik({
     initialValues,
     validationSchema,
-    onSubmit: (values) => {
-      fetch('http://localhost:8000/users', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(values),
-      }).then(() => {
-        console.log('new user added');
-      });
-    },
+    onSubmit: handleCreateUser,
   });
 
   return (
@@ -100,7 +104,7 @@ const CreateUser = () => {
           mt: 1,
         }}
         >
-      <Formik >
+          <Formik>
           <Form
             style={{
               display: 'flex', flexDirection: 'column', gap: 15,

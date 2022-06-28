@@ -32,10 +32,10 @@ const TablePage = () => {
 
   return (
     <Container sx={{
-      width: 750, display: 'flex', alignItems: 'center', justifyContent: 'center', mt: 5,
+      width: '60%', display: 'flex', alignItems: 'center', justifyContent: 'center', mt: 5,
     }}>
     <TableContainer component={Paper}>
-      <Table sx={{ width: 700 }} aria-label="simple table">
+      <Table sx={{ width: '100%' }} aria-label="simple table">
         <TableHead>
           <TableRow>
             <TableCell>User</TableCell>

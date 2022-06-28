@@ -7,7 +7,7 @@
         {
           "id": 1,
           "title": "programmers",
-          "subCategory": [
+          "subSubCategory": [
             {
               "id": 1,
               "title": "Front-end"
@@ -21,7 +21,7 @@
         {
           "id": 2,
           "title": "sales",
-          "subCategory": []
+          "subSubCategory": []
         }
       ]
     },

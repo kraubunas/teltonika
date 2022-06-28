@@ -2,11 +2,12 @@ import React from 'react';
 import {
   Typography, Container, Paper, TextField, Button,
 } from '@mui/material';
-import { useFormik } from 'formik';
+import { useFormik, Formik, Form } from 'formik';
 import * as Yup from 'yup';
+import { useNavigate } from 'react-router-dom';
 
 const validationSchema = Yup.object({
-  category: Yup.string()
+  title: Yup.string()
     .required('Required')
     .max(32, 'Need 32 symbols or less'),
 
@@ -21,14 +22,25 @@ const validationSchema = Yup.object({
 
 const CreateNewCategory = () => {
   const initialValues = {
-    category: '',
+    title: '',
     subCategory: '',
     subSubCategory: '',
   };
 
+  const navigate = useNavigate();
+
   const formik = useFormik({
     initialValues,
-    onSubmit: (values) => console.log(JSON.stringify(values, null, 2)),
+    onSubmit: (values) => {
+      fetch('http://localhost:8000/categories', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(values),
+      }).then(() => {
+        console.log('new category created');
+        navigate('/');
+      });
+    },
     validationSchema,
   });
 
@@ -48,20 +60,24 @@ const CreateNewCategory = () => {
           mt: 1,
         }}
         >
-          <form
+          <Formik
+// @ts-ignore
+          onSubmit={formik.handleSubmit}
+>
+          <Form
             style={{
               display: 'flex', flexDirection: 'column', gap: 15,
             }}
           >
             <TextField
-            name='category'
+            name='title'
             type="text"
             label="ex. Employee"
-            value={formik.values.category}
+            value={formik.values.title}
             fullWidth
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            error={formik.touched.category && Boolean(formik.errors.category)}
+            error={formik.touched.title && Boolean(formik.errors.title)}
             required
             />
             <TextField
@@ -87,7 +103,8 @@ const CreateNewCategory = () => {
             required
             />
             <Button type="submit" variant="contained">Create category</Button>
-          </form>
+          </Form>
+          </Formik>
         </Container>
       </Paper>
     </Container>
