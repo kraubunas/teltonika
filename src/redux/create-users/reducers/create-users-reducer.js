@@ -11,12 +11,10 @@ export default function (action, state = initialState) {
     case CREATE_NEW_USER_SUCCESS:
       return {
         ...state,
-        isLoggedIn: false,
       };
     case CREATE_NEW_USER_FAIL:
       return {
         ...state,
-        isLoggedIn: false,
       };
     default:
       return state;

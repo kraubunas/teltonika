@@ -66,6 +66,16 @@
       "gender": "male",
       "category": "heads",
       "id": 3
+    },
+    {
+      "firstName": "Antanas",
+      "lastName": "Antaniukas",
+      "password": "Antanas123!",
+      "email": "antanas@antaniukas.lt",
+      "age": 45,
+      "gender": "male",
+      "category": "employees",
+      "id": 4
     }
   ]
 }
