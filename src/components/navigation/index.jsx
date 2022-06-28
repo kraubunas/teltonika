@@ -4,27 +4,22 @@ import {
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Link } from 'react-router-dom';
+import CategoryService from '../../redux/categories/service/categories-get-service';
 
 const NavBar = () => {
   const [categories, setCategories] = useState([]);
 
-  const data = () => {
-    fetch(
-      'http://localhost:8000/categories',
-      {
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
-      },
-    )
-      .then((response) => response.json())
-      .then((myJson) => {
-        setCategories(myJson);
-      });
-  };
   useEffect(() => {
-    data();
+    CategoryService.getCategories().then(
+      (res) => {
+        setCategories(res.data);
+      },
+      (error) => {
+        const content = (error.res && error.res.data) || error.message || error.toString();
+
+        setCategories(content);
+      },
+    );
   }, []);
 
   const [categoriesOpen, setCategoriesOpen] = useState(false);

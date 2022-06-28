@@ -7,29 +7,23 @@ import TablePage from './pages/table-page/index.jsx';
 import CreateNewCategory from './pages/new-category-page/index.jsx';
 import LandingPage from './components/landing-page.jsx';
 import CreateUser from './pages/new-user-page/index.jsx';
+import CategoryService from './redux/categories/service/categories-get-service';
 
 const App = () => {
   const [categories, setCategories] = useState([]);
 
-  const data = () => {
-    fetch(
-      'http://localhost:8000/categories',
-      {
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
-      },
-    )
-      .then((response) => response.json())
-      .then((myJson) => {
-        setCategories(myJson);
-      });
-  };
   useEffect(() => {
-    data();
-  }, []);
+    CategoryService.getCategories().then(
+      (res) => {
+        setCategories(res.data);
+      },
+      (error) => {
+        const content = (error.res && error.res.data) || error.message || error.toString();
 
+        setCategories(content);
+      },
+    );
+  }, []);
   // @ts-ignore
   const Table = () => (
     <div>
