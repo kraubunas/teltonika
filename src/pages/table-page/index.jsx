@@ -7,27 +7,21 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import UserService from '../../redux/create-users/service/users-service';
 
 const TablePage = () => {
   const [users, setUsers] = useState([]);
-
-  const data = () => {
-    fetch(
-      'http://localhost:8000/users',
-      {
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
-      },
-    )
-      .then((response) => response.json())
-      .then((myJson) => {
-        setUsers(myJson);
-      });
-  };
   useEffect(() => {
-    data();
+    UserService.getUsers().then(
+      (res) => {
+        setUsers(res.data);
+      },
+      (error) => {
+        const content = (error.res && error.res.data) || error.message || error.toString();
+
+        setUsers(content);
+      },
+    );
   }, []);
 
   return (
